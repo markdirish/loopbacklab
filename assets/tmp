@@ -1,0 +1,135 @@
+mirish:~$ cd work/conferences/2022
+mirish:2022$ ls
+common-benelux  common-navigate  lug-september
+mirish:2022$ cd common-benelux/
+mirish:common-benelux$ ls
+loopback-workshop
+mirish:common-benelux$ cd loopback-workshop/
+mirish:loopback-workshop$ ls
+workshop-app  workshop-instructions
+mirish:loopback-workshop$ cd workshop-
+bash: cd: workshop-: No such file or directory
+mirish:loopback-workshop$ cd workshop-app/
+mirish:workshop-app$ ls
+DEVELOPING.md  node_modules       public     tsconfig.json
+dist           package.json       README.md  tsconfig.tsbuildinfo
+Dockerfile     package-lock.json  src
+mirish:workshop-app$ npm run start
+
+> workshop-app@0.0.1 prestart
+> npm run rebuild
+
+
+> workshop-app@0.0.1 rebuild
+> npm run clean && npm run build
+
+
+> workshop-app@0.0.1 clean
+> lb-clean dist *.tsbuildinfo .eslintcache
+
+
+> workshop-app@0.0.1 build
+> lb-tsc
+
+
+> workshop-app@0.0.1 start
+> node -r source-map-support/register .
+
+Server is running at http://[::1]:3000
+Try http://[::1]:3000/ping
+^C
+mirish:workshop-app$ ls
+DEVELOPING.md  node_modules       public     tsconfig.json
+dist           package.json       README.md  tsconfig.tsbuildinfo
+Dockerfile     package-lock.json  src
+mirish:workshop-app$ lb4 model
+? Model class name: Book
+? Please select the model base class Entity (A persisted model with an ID)
+? Allow additional (free-form) properties? No
+Model Book will be created in src/models/book.model.ts
+
+Let's add a property to Book
+Enter an empty property name when done
+
+? Enter the property name: id
+? Property type: number
+? Is id the ID property? Yes
+? Is id generated automatically? Yes
+
+Let's add another property to Book
+Enter an empty property name when done
+
+? Enter the property name: title
+? Property type: string
+? Is it required?: Yes
+
+Let's add another property to Book
+Enter an empty property name when done
+
+? Enter the property name: 
+   create src/models/book.model.ts
+
+No change to package.json was detected. No package manager install will be executed.
+   update src/models/index.ts
+
+Model Book was/were created in src/models
+
+mirish:workshop-app$ lb4 repository
+? Select the datasource IbmiDatasource
+? Select the model(s) you want to generate a repository for Author, Book
+   create src/repositories/author.repository.ts
+   create src/repositories/book.repository.ts
+
+No change to package.json was detected. No package manager install will be executed.
+   update src/repositories/index.ts
+   update src/repositories/index.ts
+
+Repositories AuthorRepository, BookRepository was/were created in src/repositories
+
+mirish:workshop-app$ lb4 controller
+? Controller class name: Author
+Controller Author will be created in src/controllers/author.controller.ts
+
+? What kind of controller would you like to generate? REST Controller with CRUD 
+functions
+? What is the name of the model to use with this CRUD repository? Author
+? What is the name of your CRUD repository? AuthorRepository
+? What is the name of ID property? id
+? What is the type of your ID? number
+? Is the id omitted when creating a new instance? Yes
+? What is the base HTTP path name of the CRUD operations? /authors
+   create src/controllers/author.controller.ts
+
+No change to package.json was detected. No package manager install will be executed.
+   update src/controllers/index.ts
+
+Controller Author was/were created in src/controllers
+
+mirish:workshop-app$ lb4 controller
+? Controller class name: Book
+Controller Book will be created in src/controllers/book.controller.ts
+
+? What kind of controller would you like to generate? REST Controller with CRUD 
+functions
+? What is the name of the model to use with this CRUD repository? Book
+? What is the name of your CRUD repository? BookRepository
+? What is the name of ID property? id
+? What is the type of your ID? number
+? Is the id omitted when creating a new instance? Yes
+? What is the base HTTP path name of the CRUD operations? /books
+   create src/controllers/book.controller.ts
+
+No change to package.json was detected. No package manager install will be executed.
+   update src/controllers/index.ts
+
+Controller Book was/were created in src/controllers
+
+mirish:workshop-app$ 
+
+
+mirish:workshop-app$ npm install @loopback/authentication-jwt
+
+
+
+
+
