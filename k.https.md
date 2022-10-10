@@ -16,15 +16,18 @@ According to them, in your `src/index.ts`, you just need to add
 // At the top of the file...
 import * as fs from 'fs';
 
-// Inside the config object
+// Inside the rest object
 
 const config = {
-  /// ...
-  /// ...
-  // Enable HTTPS
-  protocol: 'https',
-  key: fs.readFileSync('/home/username/key.pem'),
-  cert: fs.readFileSync('/home/username/cert.pem'),
+  rest: {
+    /// ...
+    /// ...
+    // Enable HTTPS
+    // replace username with your username
+    protocol: 'https',
+    key: fs.readFileSync('/home/username/key.pem'),
+    cert: fs.readFileSync('/home/username/cert.pem'),
+  }
 }
 ```
 
@@ -32,7 +35,15 @@ const config = {
 
 ~~If you are a networking guru, and know how to serve up your own self-signed SSL certificates, please teach me how. I love learning new things from you as well as running these workshops!~~
 
+Koen discovered that you can run these commands to get it running with these commands:
 
+```
+openssl genrsa -out key.pem 1024
+openssl req -new -key key.pem -out certrequest.csr
+openssl x509 -req -in certrequest.csr -signkey key.pem -out cert.pem
+```
+
+Run these commands, then place the resulting `.pem` files in your `/home/username` directory.
 
 Also, anyone who can secure their endpoints with HTTPS gets a gold star.
 
