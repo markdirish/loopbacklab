@@ -13,15 +13,26 @@ The LoopBack documentation claims that it is easy to set up HTTPS: https://loopb
 According to them, in your `src/index.ts`, you just need to add
 
 ```ts
-// Enable HTTPS
-protocol: 'https',
-key: fs.readFileSync('./key.pem'),
-cert: fs.readFileSync('./cert.pem'),
+// At the top of the file...
+import * as fs from 'fs';
+
+// Inside the config object
+
+const config = {
+  /// ...
+  /// ...
+  // Enable HTTPS
+  protocol: 'https',
+  key: fs.readFileSync('/home/username/key.pem'),
+  cert: fs.readFileSync('/home/username/cert.pem'),
+}
 ```
 
-However, I tried to generate my own SSL certificates, add them to the correct location, and tell LoopBack to use HTTPS. It refused, and only used HTTP. I wanted to make sure the rest of the hackathon was working, so I never got back to getting it to work.
+~~However, I tried to generate my own SSL certificates, add them to the correct location, and tell LoopBack to use HTTPS. It refused, and only used HTTP. I wanted to make sure the rest of the hackathon was working, so I never got back to getting it to work.~~
 
-If you are a networking guru, and know how to serve up your own self-signed SSL certificates, please teach me how. I love learning new things from you as well as running these workshops!
+~~If you are a networking guru, and know how to serve up your own self-signed SSL certificates, please teach me how. I love learning new things from you as well as running these workshops!~~
+
+
 
 Also, anyone who can secure their endpoints with HTTPS gets a gold star.
 

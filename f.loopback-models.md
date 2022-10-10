@@ -281,7 +281,7 @@ Before will tackle these issues, Let's create the rest of our models. For the re
 **`Order`**:
 ```
 id:                 number     (required) (ID) (auto-generated)
-customerId:         string     (required)
+customerId:         number     (required)
 orderTime:          date       (required)
 ```
 
