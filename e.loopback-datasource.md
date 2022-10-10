@@ -6,8 +6,13 @@ To create a datasource, we will again use the `lb4` CLI. When we run the command
 
 ## ODBC
 
+---
 _This part of the workshop will primarily be given as a presentation._
 _ODBC, the ODBC driver, and a DSN for your to use will already be installed and configured for you for this lab. This information is still important to know!_
+
+If you want to skip this section and just keep working, go to [Back to LoopBack](#back-to-loopback)
+
+---
 
 The overwhelming majority of open-source software delivered on the system was developed by people who have no idea what IBM i is, and there are no "built-in" mechanisms to connect them to things like Db2 for i, RPG programs, or running CL commands. For IBM i users, this presents a problem: As cool and modern as open-source languages, runtimes, and utilities may be, they aren't really useful if they can't integrate with your core business applications. Instead, we need to develop a strategy to connect to underyling IBM i resources, one that can reuse no matter what technology we are trying to connect to IBM i.
 
@@ -69,12 +74,17 @@ Once you select that datasource, it will continue to prompt you for options spec
 ```
 ? ODBC DSN:
 ```
-In this prompt, provide the value `*LOCAL` This is a system-wide DSN that uses `*CURRENT` credentials, meaning the REST API will run under the same authority as the user profile that is running the process (in this case, our LoopBack application).
+In this prompt, provide nothing. It would be great if we could provide `*LOCAL`, but there is a bug in the connector that only accepts values from the next question. I will fix after the conference.
+
+```
+? ODBC connection string for overriding other options (e.g.: DBQ=QGPL;NAM=1):
+```
+
+For our connection string, we can provide the value `DSN=*LOCAL;`. This will make your DataSource connection use a system-wide DSN that uses `*CURRENT` credentials, meaning the REST API will run under the same authority as the user profile that is running the process (in this case, our LoopBack application).
 
 Once you hit "Enter", you will prompted for additional connection string options that you can add. For all of these, you can just press "Enter" to leave them blank. Our DSN will do all of the heavy lifting for us, and we don't need any additional options for now.
 
-```
-? ODBC connection string for overriding other options (e.g.: DBQ=QGPL;NAM=1): 
+``` 
 ? IBM i User (If not specified in DSN or connection string): 
 ? IBM i User's Password (If not specified in DSN or connection string): [hidden]
 ```
@@ -85,7 +95,7 @@ Just like when we created our app, the CLI will generate a file for us. However,
 $ npm run build
 ```
 
-We now have the framework for a LoopBack application, and a datasource that allows our LoopBack application to connect to Db2 for i. We can finally start creating our models and migrating them to the database!
+We now have the framework for a LoopBack application, and a datasource that allows our LoopBack application to connect to Db2 for i. We can finally start creating our models and (eventually) migrating them to the database!
 
 ---
 Next: [Creating Models](f.loopback-models.md)
